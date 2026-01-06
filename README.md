@@ -1,6 +1,6 @@
 # Setting Up Restic For Windows 11 With Task Scheduler
 This repository documents a **modern, minimal, and correct** way to create a __Time-Machine__ style backup service for Windows using Restic.
-Actually, this service may be better than apple's own __Time-Machine__ and best of all it's free.  This guide will cover: 
+Actually, this service may be better than Apple's own __Time-Machine__ and best of all it's free.  This guide will cover: 
 
 - **Downloading and installing Restic**
 - **Creating a Restic back up repository**
