@@ -26,3 +26,57 @@ a free and open source back-up services of their own.
 
 ---
 
+## Step 1 — Download and install Restic using Chocolatey
+
+If you need to install __Chocolatey__ first, you can find the installation guide at the link below:
+
+[Official Chocolatey Installation Guide](https://chocolatey.org/install)
+
+Launch powershell from your windows environment (Make sure you're in admin mode)
+
+Type in the following command:
+
+```Powershell
+choco install restic
+```
+
+<br>
+
+>[!Note]
+>You might need to restart powershell in admin mode for the install to take effect
+
+<br>
+
+---
+
+## Step 2 — Create and initialize the backup repository
+
+Create a folder which will hold the backups.  In this example i'm using a thumbrdive located at **E:\\**
+You can use whatever you like for your own combination of drive and folder.
+
+```Powershell
+New-Item -Itemtype Directory -Path E:\ResticRepo
+```
+
+<br>
+
+If you goof up use recursive remove and try again:
+```PowerShell
+Remove-Item -Recurse -Force E:\ResticRepo
+```
+
+<br>
+
+Now initialize the repository folder:
+```Powershell
+restic init --repo E:\ResticRepo
+```
+<br>
+
+>[!important]
+>You will be asked for a password when you initialize your repository.  Restic uses AES-256 bit encryption to protect your respository so choose a strong password and one you'll remember.
+>If you lose the password you will **NOT** be able to access or restore any of your backups so **WRITE IT DOWN** and keep it safe
+
+<br>
+
+---
