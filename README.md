@@ -108,11 +108,16 @@ restic -r E:\ResticRepo backup D:\My\Path\To\Data C:\My\Other\Path\To\Data --exc
 
 ## Step 4 — Perform your first backup
 
-If the `--dry-run` succeeds without issue you can then perform your first actual backup manually: 
+If the `--dry-run` succeeds without issue you can then perform your first actual backup manually:
 
 ```Powershell
 restic -r E:\ResticRepo backup D:\My\Path\To\Data C:\My\Other\Path\To\Data --exclude D:\Games --exclude C:\Art\Jpgs
 ```
+<br>
+
+>[!Note]
+>Notice that the command is exactly the same one as in **Step 3** but with the `--dry-run` flag eliminated
 
 <br>
+
 
