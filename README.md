@@ -51,7 +51,7 @@ choco install restic
 
 ## Step 2 — Create and initialize the backup repository
 
-Create a folder which will hold the backups.  In this example i'm using a thumbrdive located at **E:\\**
+Create a folder which will hold the backups.  In this example i'm using a thumbrdive located at `E:\`
 You can use whatever you like for your own combination of drive and folder.
 
 ```Powershell
@@ -94,6 +94,25 @@ restic -r E:\ResticRepo backup D:\My\Path\To\Data C:\My\Other\Path\To\Data --exc
 
 >[!Note]
 >Notice we can supply multiple sources (drives and letters) to back up and we can also exclude multiple sources as well.  See the offical Restic docs for addtional functionality here
+
+<br>
+
+>[!important]
+>If you choose to backup and entire drive such as `H:\`, it's better to place all the contents of what you want to back up into a single folder; for example: `H:\MyData\AllOfYourDriveData`.
+>The reason for this is, there are hidden directories in the root of any drive and if you attempt to back up the entire root of say `H:\` you may run into _inaccessible_ or _permission denied_
+>errors from weirdly hidden directories such as `Recycle` or `System Volume Information` which Restic will not be able to access.  So to avoid any unecessary errors, instead of backing up the root of any drive,
+>just place all of your files in a single folder inside of the root drive and select that folder to backup.
+
+<br>
+---
+
+## Step 4 — Perform your first backup
+
+If the `--dry-run` succeeds without issue you can then perform your first actual backup manually: 
+
+```Powershell
+restic -r E:\ResticRepo backup D:\My\Path\To\Data C:\My\Other\Path\To\Data --exclude D:\Games --exclude C:\Art\Jpgs
+```
 
 <br>
 
