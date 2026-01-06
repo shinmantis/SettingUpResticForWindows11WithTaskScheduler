@@ -80,3 +80,20 @@ restic init --repo E:\ResticRepo
 <br>
 
 ---
+
+## Step 3 — Perform a dry-run to test the respository
+
+Performing a dry-run on the folder(s) we want to back-up allows us to catch any errors before actually backingup any data.
+Use the following command to perform a dry run:
+
+```Powershell
+restic -r E:\ResticRepo backup D:\My\Path\To\Data C:\My\Other\Path\To\Data --exclude D:\Games --exclude C:\Art\Jpgs --dry-run
+```
+
+<br>
+
+>[!Note]
+>Notice we can supply multiple sources (drives and letters) to back up and we can also exclude multiple sources as well.  See the offical Restic docs for addtional functionality here
+
+<br>
+
