@@ -75,7 +75,7 @@ restic init --repo E:\ResticRepo
 
 >[!important]
 >You will be asked for a password when you initialize your repository.  Restic uses AES-256 bit encryption to protect your respository so choose a strong password and one you'll remember.
->If you lose the password you will **NOT** be able to access or restore any of your backups so **WRITE IT DOWN** and keep it safe
+>If you lose the password you will **NOT** be able to access or restore any of your backups so **WRITE IT DOWN** and keep it safe.
 
 <br>
 
