@@ -163,7 +163,7 @@ restic -r E:\ResticRepo restore latest --target C:\TempRestore
 You can manage how many daily, weekly, and monthly backup snapshots are kept with the following command:
 
 ```Powershell
-restic -r F:\ResticRepo forget --keep-daily 7 --keep-weekly 4 --keep-monthly 6 --prune
+restic -r E:\ResticRepo forget --keep-daily 7 --keep-weekly 4 --keep-monthly 6 --prune
 ```
 
 <br>
