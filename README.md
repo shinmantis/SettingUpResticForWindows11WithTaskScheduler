@@ -170,6 +170,22 @@ restic -r E:\ResticRepo forget --keep-daily 7 --keep-weekly 4 --keep-monthly 6 -
 ---
 
 
+---
+
+## Step 8 — Write Powershell scripts to automate Restic
+
+Now that the repo is setup, we will write a few powershell scripts to automate the backup process:
+
+####Script 1 0 
+
+```Powershell
+restic -r E:\ResticRepo forget --keep-daily 7 --keep-weekly 4 --keep-monthly 6 --prune
+```
+
+<br>
+---
+
+
 
 
 
