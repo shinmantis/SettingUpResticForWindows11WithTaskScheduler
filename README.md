@@ -109,6 +109,7 @@ restic -r E:\ResticRepo backup D:\My\Path\To\Data C:\My\Other\Path\To\Data --exc
 >just place all of your files in a single folder inside of the root drive and select that folder to backup.
 
 <br>
+
 ---
 
 ## Step 4 — Perform your first backup
@@ -161,7 +162,6 @@ restic -r E:\ResticRepo restore latest --target C:\TempRestore
 
 ---
 
----
 
 ## Step 7 — (Optional) Set the retention policy
 
@@ -174,8 +174,6 @@ restic -r E:\ResticRepo forget --keep-daily 7 --keep-weekly 4 --keep-monthly 6 -
 <br>
 ---
 
-
----
 
 ## Step 8 — Write Powershell scripts to automate Restic
 
@@ -203,11 +201,13 @@ winget install --id Microsoft.Edit
 
 Launch `edit` with the following file name:
 
+
 ```Powershell
 edit run-rustic.ps1
 ```
 
 Copy and paste the following code into the editor:
+
 
 ```Powershell
 # The drive we are backing up to
@@ -246,10 +246,28 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File $script | Out-File -Appe
 Go to `File` => `Save As` and make sure the file is saved as `run-restic.ps1`.  Then exit
 
 
-#### Script 2 The BACKUP PROCESS script
+#### Script 2 the VB script
 
+Wait.  What? A Visual Basic (vb) script? Why?  Well the answer is relatively simple.  We want to use Microsoft's Task Scheduler to 
+automate calling the `run-restic.ps1` script, but because it's a powershell script the powershell window will pop up briefly during
+the times in which the Task Scheduler executes `run-restic.ps1`.  This can be an annoyance if you're working on the desktop and
+the powershell window pops up in the background or temporarily steals the focus from your current window.  By having the Task Scheduler
+execute a vb script which then calls the `run-restic.ps1` script, we can eliminate the backup process to be a purely silent background service (no powershell pop-ups at all).
+In your current directory where the `run-restic.p1` script resides, run the following command:
 
+```Powershell
+edit run-restic.vbs
+```
 
+Then copy and paste the following code:
+
+```Powershell
+CreateObject("Wscript.Shell").Run "powershell.exe -NoProfile -ExecutionPolicy Bypass -File ""C:\Scripts\run-restic.ps1""", 0, False
+```
+
+<br>
+
+Go to `File` => `Save As` and make sure the file is saved as `run-restic.vbs`.  Then exit
 
 ---
 
