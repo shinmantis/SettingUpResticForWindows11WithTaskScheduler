@@ -51,7 +51,7 @@ choco install restic
 
 ## Step 2 — Create and initialize the backup repository
 
-Create a folder which will hold the backups.  In this example i'm using a thumbrdive located at `E:\`
+Create a folder which will hold the backups.  In this example i'm using a thumbdrive located at `E:\`
 You can use whatever you like for your own combination of drive and folder.
 
 >[!important]
@@ -79,16 +79,16 @@ restic init --repo E:\ResticRepo
 <br>
 
 >[!important]
->You will be asked for a password when you initialize your repository.  Restic uses AES-256 bit encryption to protect your respository so choose a strong password and one you'll remember.
+>You will be asked for a password when you initialize your repository.  Restic uses AES-256 bit encryption to protect your repository so choose a strong password and one you'll remember.
 >If you lose the password you will **NOT** be able to access or restore any of your backups so **WRITE IT DOWN** and keep it safe.
 
 <br>
 
 ---
 
-## Step 3 — Perform a dry-run to test the respository
+## Step 3 — Perform a dry-run to test the repository
 
-Performing a dry-run on the folder(s) we want to back-up allows us to catch any errors before actually backingup any data.
+Performing a dry-run on the folder(s) we want to back-up allows us to catch any errors before actually backing up any data.
 Use the following command to perform a dry run:
 
 ```Powershell
@@ -347,10 +347,10 @@ Now that all the scripts have been written, all that's left is to schedule the i
   - Make sure `Configure for Windows 10` is selected (as of this writing there is no Windows 11 option)
 
 5. Select the `Triggers` tab at the top and select `New`
-   - Make sure `Begin tte task` at the top is set to `On a schedule`
+   - Make sure `Begin the task` at the top is set to `On a schedule`
    - Make sure `Settings` is set to `Daily` and that `Recur every` is set to `1 days`
    - Under `Advanced settings` and `Repeat task every` is where you can set how often the scheduler fires off the backup script. I have mine set to every `5 minutes` but you can set your own intervals here.  Make sure `for a duration of:` is set to `1 day`.
-   - Make sure at the botttom `Enabled` is checked
+   - Make sure at the bottom `Enabled` is checked
    - Click OK
      
 6. Select the `Actions` tab at the top and select `New`
@@ -384,7 +384,7 @@ Now that all the scripts have been written, all that's left is to schedule the i
 7. Select the `Conditions` tab at the top
    - Make sure under `Power`:
      - `Start the task only if the computer is on AC power` is selected
-     - `Stop if the computer siwthces to battery power` is selected
+     - `Stop if the computer switches to battery power` is selected
      - Click Ok
     
 8. Finally, Click Ok on the window with all the tabs.
