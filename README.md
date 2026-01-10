@@ -330,11 +330,68 @@ Go to `File` => `Save As` and make sure the file is saved as `restic-pass.txt`. 
 
 <br>
 
-
-
-
-
 ---
+
+## Step 9 — Setup Microsoft Task Scheduler to run the backup process
+
+Now that all the scripts have been written, all that's left is to schedule the interval in which they are run.
+
+1. In the windows `search` bar, type in `Task Scheduler`. and in the window next to the `Task Scheduler` icon make sure and select `run as administrator`
+2. Inside the `Task Scheduler` app and on the right-hand side, select `Create Task`
+3. Give the Task a name such as `Restic-Backup-Process` or something you can identify
+4. Under Security options:
+  - Make sure `When running the task, use the following account:` is set to the windows account that you will be logging into.  If this is your admin account then you can leave the current user.  If you will be logging into a different account, then you must `Change User or Group` to the appropriate account
+  - Make sure `Run only when user is logged on` is selected
+  - Make sure `Run with highest privileges` is selected
+  - Make sure `Hidden` is selected
+  - Make sure `Configure for Windows 10` is selected (as of this writing there is no Windows 11 option)
+
+5. Select the `Triggers` tab at the top and select `New`
+   - Make sure `Begin tte task` at the top is set to `On a schedule`
+   - Make sure `Settings` is set to `Daily` and that `Recur every` is set to `1 days`
+   - Under `Advanced settings` and `Repeat task every` is where you can set how often the scheduler fires off the backup script. I have mine set to every `5 minutes` but you can set your own intervals here.  Make sure `for a duration of:` is set to `1 day`.
+   - Make sure at the botttom `Enabled` is checked
+   - Click OK
+     
+6. Select the `Actions` tab at the top and select `New`
+   - Make sure `Action` is set to `Start a program`
+   - Under `settings` copy and paste the following code:
+
+   ```Powershell
+      wscript.exe
+   ```
+   
+   <br>
+
+   - Under `Add arguments (optional)` copy and paste the following code:
+   
+   ```Powershell
+      "C:\Scripts\run-restic.vbs"
+   ```
+   
+   <br>
+  
+   - Under `Start in (optional):` copy and paste the following code:
+  
+   ```Powershell
+   C:\Scripts
+   ```
+
+  <br>
+
+  - Finally, Click OK
+
+7. Select the `Conditions` tab at the top
+   - Make sure under `Power`:
+     - `Start the task only if the computer is on AC power` is selected
+     - `Stop if the computer siwthces to battery power` is selected
+     - Click Ok
+    
+8. Finally, Click Ok on the window with all the tabs.
+
+
+Congratulations! You now have a restic service which backups your selected drives/folders.  You can select your task by name in the main window of the Task Scheduler and in the right pane, select `Run`.
+When the task is complete you should see under `Last Run Result` the message `The operation completed successfully. (0x0)`.  If you see any errors, check your log file located in `C:\Scripts\restic-run.log`
 
 
 
