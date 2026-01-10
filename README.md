@@ -179,7 +179,7 @@ restic -r E:\ResticRepo forget --keep-daily 7 --keep-weekly 4 --keep-monthly 6 -
 
 Now that the repo is setup, we will write a few powershell scripts to automate the backup process:
 
-#### Script 1 The ENTRY Script
+#### <ins>Script 1 The ENTRY Script</ins>
 
 Create a new folder called `Scripts` in the root of your windows drive.  In my case I will use `C:\Scripts`:
 
@@ -247,7 +247,7 @@ Go to `File` => `Save As` and make sure the file is saved as `run-restic.ps1`.  
 
 <br>
 
-#### Script 2 the VB script
+#### <ins>Script 2 the VB script</ins>
 
 Wait.  What? A Visual Basic (vb) script? Why?  Well the answer is relatively simple.  We want to use Microsoft's Task Scheduler to 
 automate calling the `run-restic.ps1` script, but because it's a powershell script the powershell window will pop up briefly during
@@ -272,7 +272,7 @@ Go to `File` => `Save As` and make sure the file is saved as `run-restic.vbs`.  
 
 <br>
 
-#### Script 3 the Backup Process script
+#### <ins>Script 3 the Backup Process script</ins>
 
 This will be the last powershell script we write. Navigate to your backup drive, for me it's `E:\`, and create
 a new folder called `PowerShellScripts`:
