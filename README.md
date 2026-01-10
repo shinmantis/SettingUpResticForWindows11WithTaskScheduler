@@ -54,6 +54,11 @@ choco install restic
 Create a folder which will hold the backups.  In this example i'm using a thumbrdive located at `E:\`
 You can use whatever you like for your own combination of drive and folder.
 
+>[!important]
+>This guide assumes you are backing up your hard drive to a DIFFERENT drive other than your windows hardrive (e.g. `C:\`).
+
+<br>
+
 ```Powershell
 New-Item -Itemtype Directory -Path E:\ResticRepo
 ```
@@ -98,8 +103,8 @@ restic -r E:\ResticRepo backup D:\My\Path\To\Data C:\My\Other\Path\To\Data --exc
 <br>
 
 >[!important]
->If you choose to backup and entire drive such as `H:\`, it's better to place all the contents of what you want to back up into a single folder; for example: `H:\MyData\AllOfYourDriveData`.
->The reason for this is, there are hidden directories in the root of any drive and if you attempt to back up the entire root of say `H:\` you may run into _inaccessible_ or _permission denied_
+>If you choose to backup the roof of an entire drive (e.g. `H:\`), it's better to place all the contents of what you want to back up into a single folder; for example: `H:\MyData\AllOfYourDriveData`.
+>The reason for this is, there are hidden directories in the root of any drive and you may run into _inaccessible_ or _permission denied_
 >errors from weirdly hidden directories such as `Recycle` or `System Volume Information` which Restic will not be able to access.  So to avoid any unecessary errors, instead of backing up the root of any drive,
 >just place all of your files in a single folder inside of the root drive and select that folder to backup.
 
@@ -176,13 +181,76 @@ restic -r E:\ResticRepo forget --keep-daily 7 --keep-weekly 4 --keep-monthly 6 -
 
 Now that the repo is setup, we will write a few powershell scripts to automate the backup process:
 
-####Script 1 0 
+#### Script 1 The ENTRY Script
+
+Create a new folder called Scripts in your root drive.  In my case I will use `C:\Scripts`:
 
 ```Powershell
-restic -r E:\ResticRepo forget --keep-daily 7 --keep-weekly 4 --keep-monthly 6 --prune
+mkdir C:\Scripts
+```
+
+Navigate to your scripts folder:
+
+```Powershell
+cd scripts
+```
+
+If you don't already have it, install `edit` in powershell or you can use any editor you want
+
+```Powershell
+winget install --id Microsoft.Edit
+```
+
+Launch `edit` with the following file name:
+
+```Powershell
+edit run-rustic.ps1
+```
+
+Copy and paste the following code into the editor:
+
+```Powershell
+# The drive we are backing up to
+$backupDrive = "E:\"
+
+# Where the backup script lives, this file is just the entry script
+$script = "E:\PowerShellScripts\restic-backup.ps1"
+
+# A log file for debuggging or any troubleshooting
+$log = "C:\Scripts\restic-run.log"
+
+"------ $(Get-Date) ------" >> $log
+
+Get-PSDrive >> $log
+
+# If the backup drive volume isn't mounted, do nothing
+if (-not (Test-Path $thumbDrive)) { 
+"Thumbdrive drive not present, exiting." | Out-File -Append $log
+exit 0 }
+
+"Thumbdrive drive present, attempting to launch script." | Out-File -Append $log
+
+# Also verify the script which directs the backup process exists
+if (-not (Test-Path $script)) { 
+"Script not present, exiting." | Out-File -Append $log
+exit 0 }
+
+"Script present, attempting to launch restic." | Out-File -Append $log
+
+# Run the real backup script
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File $script | Out-File -Append $log
 ```
 
 <br>
+
+Go to `File` => `Save As` and make sure the file is saved as `run-restic.ps1`.  Then exit
+
+
+#### Script 2 The BACKUP PROCESS script
+
+
+
+
 ---
 
 
