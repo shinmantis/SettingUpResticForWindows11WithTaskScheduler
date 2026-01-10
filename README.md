@@ -181,29 +181,29 @@ Now that the repo is setup, we will write a few powershell scripts to automate t
 
 #### Script 1 The ENTRY Script
 
-Create a new folder called Scripts in your root drive.  In my case I will use `C:\Scripts`:
+Create a new folder called `Scripts` in the root of your windows drive.  In my case I will use `C:\Scripts`:
 
 ```Powershell
-mkdir C:\Scripts
+C:\> mkdir Scripts
 ```
 
 Navigate to your scripts folder:
 
 ```Powershell
-cd scripts
+C:\> cd Scripts
 ```
 
 If you don't already have it, install `edit` in powershell or you can use any editor you want
 
 ```Powershell
-winget install --id Microsoft.Edit
+C:\Scripts> winget install --id Microsoft.Edit
 ```
 
 Launch `edit` with the following file name:
 
 
 ```Powershell
-edit run-rustic.ps1
+C:\Scripts> edit run-rustic.ps1
 ```
 
 Copy and paste the following code into the editor:
@@ -245,6 +245,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File $script | Out-File -Appe
 
 Go to `File` => `Save As` and make sure the file is saved as `run-restic.ps1`.  Then exit
 
+<br>
 
 #### Script 2 the VB script
 
@@ -256,7 +257,7 @@ execute a vb script which then calls the `run-restic.ps1` script, we can elimina
 In your current directory where the `run-restic.p1` script resides, run the following command:
 
 ```Powershell
-edit run-restic.vbs
+C:\Scripts> edit run-restic.vbs
 ```
 
 Then copy and paste the following code:
@@ -268,6 +269,26 @@ CreateObject("Wscript.Shell").Run "powershell.exe -NoProfile -ExecutionPolicy By
 <br>
 
 Go to `File` => `Save As` and make sure the file is saved as `run-restic.vbs`.  Then exit
+
+<br>
+
+#### Script 3 the Backup Process script
+
+This will be the last powershell script we write. Navigate to your backup drive, for me it's `E:\`, and create
+a new folder called `PowerShellScripts`:
+
+```Powershell
+E:\ mkdir PowerShellScripts
+```
+
+Navigate to that folder
+
+```Powershell
+E:\ cd PowerShellScripts
+```
+
+
+
 
 ---
 
