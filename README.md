@@ -103,7 +103,7 @@ restic -r E:\ResticRepo backup D:\My\Path\To\Data C:\My\Other\Path\To\Data --exc
 <br>
 
 >[!important]
->If you choose to backup the roof of an entire drive (e.g. `H:\`), it's better to place all the contents of what you want to back up into a single folder; for example: `H:\MyData\AllOfYourDriveData`.
+>If you choose to backup the root of an entire drive (e.g. `H:\`), it's better to place all the contents of what you want to back up into a single folder; for example: `H:\MyData\AllOfYourDriveData`.
 >The reason for this is, there are hidden directories in the root of any drive and you may run into _inaccessible_ or _permission denied_
 >errors from weirdly hidden directories such as `Recycle` or `System Volume Information` which Restic will not be able to access.  So to avoid any unecessary errors, instead of backing up the root of any drive,
 >just place all of your files in a single folder inside of the root drive and select that folder to backup.
