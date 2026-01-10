@@ -203,7 +203,7 @@ Launch `edit` with the following file name:
 
 
 ```Powershell
-C:\Scripts> edit run-rustic.ps1
+C:\Scripts> edit run-restic.ps1
 ```
 
 Copy and paste the following code into the editor:
@@ -224,7 +224,7 @@ $log = "C:\Scripts\restic-run.log"
 Get-PSDrive >> $log
 
 # If the backup drive volume isn't mounted, do nothing
-if (-not (Test-Path $thumbDrive)) { 
+if (-not (Test-Path $backupDrive)) { 
 "Thumbdrive drive not present, exiting." | Out-File -Append $log
 exit 0 }
 
@@ -298,7 +298,7 @@ Copy and paste the following code:
 ```Powershell
 $ErrorActionPreference = "Stop"
 $env:RESTIC_REPOSITORY = "E:\ResticRepo"
-$env:RESTIC_PASSWORD_FILE = "E:\Powershellscripts\restic-pass.txt"
+$env:RESTIC_PASSWORD_FILE = "E:\PowerShellScripts\restic-pass.txt"
 & $restic backup "C:\Path\To\My\Data" "K:\Another\Data\Path"
 ```
 
