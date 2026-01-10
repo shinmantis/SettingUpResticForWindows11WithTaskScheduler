@@ -281,11 +281,55 @@ a new folder called `PowerShellScripts`:
 E:\ mkdir PowerShellScripts
 ```
 
-Navigate to that folder
+Navigate to the new folder
 
 ```Powershell
 E:\ cd PowerShellScripts
 ```
+
+Create a new powershell script `restic-backup.ps1`
+
+```Powershell
+E:\PowerShellScripts> edit restic-backup.ps1`
+```
+
+Copy and paste the following code:
+
+```Powershell
+$ErrorActionPreference = "Stop"
+$env:RESTIC_REPOSITORY = "E:\ResticRepo"
+$env:RESTIC_PASSWORD_FILE = "E:\Powershellscripts\restic-pass.txt"
+& $restic backup "C:\Path\To\My\Data" "K:\Another\Data\Path"
+```
+
+<br>
+
+Go to `File` => `Save As` and make sure the file is saved as `restic-backup.ps1`.  Then exit
+
+<br>
+
+Finally, we need to supply a `restic-pass.txt` which contains the repository password that was created in **Step 2**.  Supplying 
+a password file is safer than writing the password directly into the powershell script as it will prevent the password from showing up
+in any system logs.
+
+Run the following powershell command:
+
+```Powershell
+E:\PowerShellScript> edit restic-pass.txt 
+```
+
+Then input your password into the editor without any trailing space
+
+```Powershell
+SomePasswordToMyRepositoryBackup
+```
+
+<br>
+
+Go to `File` => `Save As` and make sure the file is saved as `restic-pass.txt`.  Then exit
+
+<br>
+
 
 
 
